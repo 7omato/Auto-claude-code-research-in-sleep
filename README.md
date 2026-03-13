@@ -339,6 +339,19 @@ After Workflow 3 generates the paper, `/auto-paper-improvement-loop` runs 2 roun
    npm install -g @openai/codex
    claude mcp add codex -s user -- codex mcp-server
    ```
+3. (For Workflow 3: paper writing) **LaTeX** environment with `latexmk` and `pdfinfo`:
+   ```bash
+   # macOS
+   brew install --cask mactex    # or: brew install basictex
+   brew install poppler          # provides pdfinfo
+
+   # Ubuntu/Debian
+   sudo apt install texlive-full latexmk poppler-utils
+
+   # Verify
+   latexmk --version && pdfinfo -v
+   ```
+   > If you only need Workflow 1 & 2 (idea discovery + auto review), LaTeX is not required.
 
 ### Install Skills
 

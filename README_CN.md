@@ -281,6 +281,19 @@ NARRATIVE_REPORT.md ──► /paper-plan ──► /paper-figure ──► /pap
    npm install -g @openai/codex
    claude mcp add codex -s user -- codex mcp-server
    ```
+3. （仅工作流 3：论文写作需要）**LaTeX** 环境，含 `latexmk` 和 `pdfinfo`：
+   ```bash
+   # macOS
+   brew install --cask mactex    # 或: brew install basictex
+   brew install poppler          # 提供 pdfinfo
+
+   # Ubuntu/Debian
+   sudo apt install texlive-full latexmk poppler-utils
+
+   # 验证
+   latexmk --version && pdfinfo -v
+   ```
+   > 如果只用工作流 1 和 2（找 idea + 自动 review），不需要安装 LaTeX。
 
 ### 安装 Skills
 
