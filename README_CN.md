@@ -458,6 +458,8 @@ claude
   - 相关项目：[wandb-mcp-server](https://github.com/wandb/mcp-server)（W&B 官方 MCP，如有）或通过 `wandb api` CLI
 - [ ] **Zotero MCP 集成** — 直接读取 Zotero 论文库的论文、标签和批注
   - 相关项目：[zotero-mcp](https://github.com/54yyyu/zotero-mcp)（1.8k⭐，语义搜索）、[arxiv-mcp-server](https://github.com/blazickjp/arxiv-mcp-server)（2.3k⭐，arXiv 搜索）、[paper-search-mcp](https://github.com/openags/paper-search-mcp)（782⭐，多源学术搜索）
+- [ ] **Obsidian 集成** — 连接 Obsidian vault，读取研究笔记、论文批注和知识图谱，为文献调研和论文写作提供上下文
+  - 相关项目：[obsidian-skills](https://github.com/kepano/obsidian-skills)（13.5k⭐，Obsidian 创始人官方出品）、[mcp-obsidian](https://github.com/MarkusPfundstein/mcp-obsidian)（3k⭐，最成熟 MCP server）、[claudian](https://github.com/YishenTu/claudian)（3.7k⭐，在 Obsidian 内嵌入 Claude Code）
 - [ ] 更多执行者 × 评审者组合（Gemini、DeepSeek 等）
 
 ## 💬 交流群

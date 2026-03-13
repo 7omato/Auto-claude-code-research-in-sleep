@@ -511,6 +511,8 @@ This lets GLM (acting as Claude Code) familiarize itself with the skill files an
   - Related projects: [wandb-mcp-server](https://github.com/wandb/mcp-server) (official W&B MCP, if available), or via `wandb api` CLI
 - [ ] **Zotero MCP integration** — read papers, tags, and annotations directly from Zotero library
   - Related projects: [zotero-mcp](https://github.com/54yyyu/zotero-mcp) (1.8k⭐, semantic search), [arxiv-mcp-server](https://github.com/blazickjp/arxiv-mcp-server) (2.3k⭐, arXiv search), [paper-search-mcp](https://github.com/openags/paper-search-mcp) (782⭐, multi-source academic search)
+- [ ] **Obsidian integration** — connect to Obsidian vault for reading research notes, paper annotations, and knowledge graphs as context for literature survey and paper writing
+  - Related projects: [obsidian-skills](https://github.com/kepano/obsidian-skills) (13.5k⭐, official by Obsidian founder), [mcp-obsidian](https://github.com/MarkusPfundstein/mcp-obsidian) (3k⭐, most mature MCP server), [claudian](https://github.com/YishenTu/claudian) (3.7k⭐, embed Claude Code in Obsidian)
 - [ ] More executor × reviewer combinations (Gemini, DeepSeek, etc.)
 
 ## 💬 Community
