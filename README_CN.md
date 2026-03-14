@@ -294,6 +294,9 @@ NARRATIVE_REPORT.md ──► /paper-plan ──► /paper-figure ──► /pap
 | 🔄 [`auto-paper-improvement-loop`](skills/auto-paper-improvement-loop/SKILL.md) | 2 轮内容审稿 + 格式检查循环（4/10 → 8.5/10） | 是 |
 | 📝 [`paper-writing`](skills/paper-writing/SKILL.md) | **工作流 3 全流程**：paper-plan → paper-figure → paper-write → paper-compile → auto-paper-improvement-loop | 是 |
 | 📱 [`feishu-notify`](skills/feishu-notify/SKILL.md) | [飞书](#-飞书lark-集成可选)通知——推送（webhook）或双向交互。默认关闭 | 否 |
+| | | |
+| **社区 Skills** | *社区贡献的领域专用 skills* | |
+| 🏗️ [`dse-loop`](skills/dse-loop/SKILL.md) | 计算机体系结构 & EDA 自动设计空间探索（gem5、Yosys、Verilator 等） | 否 |
 
 ---
 
@@ -808,6 +811,8 @@ claude
 - [ ] 更多执行者 × 评审者组合（Gemini、DeepSeek 等）
 
 ## 💬 交流群
+
+**欢迎贡献领域专用 skill！** 核心 skills 覆盖通用科研工作流，但每个领域都有自己的工具和范式。欢迎提交 PR 为你的领域添加新 skill——EDA、生物信息学、机器人、HPC 等等。只需添加一个 `skills/your-skill/SKILL.md` 并开 PR 即可。参考 [`dse-loop`](skills/dse-loop/SKILL.md) 作为示例。
 
 欢迎加入微信群，交流 Claude Code + AI 科研工作流：
 

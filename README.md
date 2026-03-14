@@ -351,6 +351,9 @@ After Workflow 3 generates the paper, `/auto-paper-improvement-loop` runs 2 roun
 | 🔄 [`auto-paper-improvement-loop`](skills/auto-paper-improvement-loop/SKILL.md) | 2-round content review + format check loop on generated paper (4/10 → 8.5/10) | Yes |
 | 📝 [`paper-writing`](skills/paper-writing/SKILL.md) | **Workflow 3 pipeline**: paper-plan → paper-figure → paper-write → paper-compile → auto-paper-improvement-loop | Yes |
 | 📱 [`feishu-notify`](skills/feishu-notify/SKILL.md) | [Feishu/Lark](#-feishulark-integration-optional) notifications — push (webhook) or interactive (bidirectional). Off by default | No |
+| | | |
+| **Community Skills** | *Domain-specific skills contributed by the community* | |
+| 🏗️ [`dse-loop`](skills/dse-loop/SKILL.md) | Autonomous design space exploration for computer architecture & EDA (gem5, Yosys, Verilator, etc.) | No |
 
 ---
 
@@ -892,6 +895,8 @@ This lets GLM (acting as Claude Code) familiarize itself with the skill files an
 - [ ] More executor × reviewer combinations (Gemini, DeepSeek, etc.)
 
 ## 💬 Community
+
+**Domain-specific skills welcome!** The core skills cover general research workflows, but every field has its own tools and patterns. We welcome PRs that add new skills for your domain — EDA, bioinformatics, robotics, HPC, or anything else. Just add a `skills/your-skill/SKILL.md` and open a PR. See [`dse-loop`](skills/dse-loop/SKILL.md) for an example.
 
 Join the WeChat group for discussion on Claude Code + AI-driven research workflows:
 
