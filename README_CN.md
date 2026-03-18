@@ -85,6 +85,7 @@ claude
 > | `sources` | `all` | 搜索哪些文献源：`zotero`、`obsidian`、`local`、`web`、`all`（逗号分隔） |
 > | `arxiv download` | `false` | 文献调研时下载最相关的 arXiv PDF。为 `false` 时仅获取元数据（标题、摘要、作者） |
 > | `DBLP_BIBTEX` | `true` | 从 [DBLP](https://dblp.org)/[CrossRef](https://www.crossref.org) 获取真实 BibTeX，替代 LLM 生成。杜绝幻觉引用。零安装 |
+> | `code review` | `true` | GPT-5.4 xhigh 部署前审查实验代码。设 `false` 跳过 |
 > | `wandb` | `false` | 自动给实验脚本加 W&B 日志。设 `true` + 在 CLAUDE.md 配 `wandb_project`。`/monitor-experiment` 从 W&B 拉训练曲线 |
 > | `illustration` | `false` | 工作流 3 自动生成架构图/方法示意图（Gemini）。需 `GEMINI_API_KEY` 环境变量 |
 >
@@ -259,9 +260,10 @@ claude
 
 1. 📋 **解析**实验计划（`refine-logs/EXPERIMENT_PLAN.md`）
 2. 💻 **实现**实验脚本（复用已有代码，加 argparse/logging/seed）
-3. ✅ **Sanity check** — 先跑最小实验，提前发现 bug
-4. 🚀 **部署**完整实验到 GPU（`/run-experiment`）
-5. 📊 **收集**初始结果，更新实验 tracker
+3. 🔍 **GPT-5.4 代码审查** — 跨模型 review 在浪费 GPU 前抓逻辑 bug（`code review: true` 默认开启）
+4. ✅ **Sanity check** — 先跑最小实验，发现运行时 bug
+5. 🚀 **部署**完整实验到 GPU（`/run-experiment`）
+6. 📊 **收集**初始结果，更新实验 tracker
 
 **涉及 Skills：** `experiment-bridge` + `run-experiment` + `monitor-experiment`
 
@@ -852,6 +854,7 @@ Skills 就是普通的 Markdown 文件，fork 后随意改：
 | `ARXIV_DOWNLOAD` | false | 搜索后自动下载最相关的 arXiv PDF | → `idea-discovery` → `research-lit` |
 | `HUMAN_CHECKPOINT` | false | 设为 `true` 时每轮 review 后暂停等待确认 | → `auto-review-loop` |
 | `WANDB` | false | 自动给实验脚本加 W&B 日志 | → `experiment-bridge` → `run-experiment` |
+| `CODE_REVIEW` | true | GPT-5.4 部署前审查实验代码 | → `experiment-bridge` |
 | `ILLUSTRATION` | false | 自动生成方法架构图（Gemini）。需 `GEMINI_API_KEY` | → `paper-writing` → `paper-illustration` |
 
 行内覆盖：`/research-pipeline "方向" — auto proceed: false, wandb: true, illustration: true`
@@ -881,12 +884,13 @@ Skills 就是普通的 Markdown 文件，fork 后随意改：
 
 | 常量 | 默认值 | 说明 |
 |------|--------|------|
-| `AUTO_DEPLOY` | true | 实现后自动部署实验。设 `false` 可先审查代码 |
+| `CODE_REVIEW` | true | GPT-5.4 xhigh 部署前审查代码。在浪费 GPU 前抓逻辑 bug |
+| `AUTO_DEPLOY` | true | 实现 + 审查后自动部署。设 `false` 可手动检查 |
 | `SANITY_FIRST` | true | 先跑最小实验，提前发现 bug |
 | `MAX_PARALLEL_RUNS` | 4 | 最多并行部署几个实验（受可用 GPU 限制） |
 | `WANDB` | false | 自动加 W&B 日志。需在 CLAUDE.md 配 `wandb_project` |
 
-行内覆盖：`/experiment-bridge — auto deploy: false, wandb: true`
+行内覆盖：`/experiment-bridge — code review: false, wandb: true`
 
 ### 文献搜索（`research-lit`）
 

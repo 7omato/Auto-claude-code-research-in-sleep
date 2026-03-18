@@ -86,6 +86,7 @@ claude
 > | `sources` | `all` | Which literature sources to search: `zotero`, `obsidian`, `local`, `web`, or `all` (comma-separated) |
 > | `arxiv download` | `false` | Download top relevant arXiv PDFs during literature survey. When `false`, only fetches metadata (title, abstract, authors) |
 > | `DBLP_BIBTEX` | `true` | Fetch real BibTeX from [DBLP](https://dblp.org)/[CrossRef](https://www.crossref.org) instead of LLM-generated entries. Eliminates hallucinated citations. Zero install |
+> | `code review` | `true` | GPT-5.4 xhigh reviews experiment code before GPU deployment. Set `false` to skip |
 > | `wandb` | `false` | Auto-add W&B logging to experiment scripts. Set `true` + configure `wandb_project` in CLAUDE.md. `/monitor-experiment` pulls training curves from W&B |
 > | `illustration` | `false` | Auto-generate architecture/method diagrams via Gemini in Workflow 3. Requires `GEMINI_API_KEY` env var |
 >
@@ -302,9 +303,10 @@ Already have an experiment plan (from Workflow 1 or your own)? `/experiment-brid
 
 1. 📋 **Parse** the experiment plan (`refine-logs/EXPERIMENT_PLAN.md`)
 2. 💻 **Implement** experiment scripts (reuse existing code, add proper argparse/logging/seeds)
-3. ✅ **Sanity check** — run the smallest experiment first to catch bugs early
-4. 🚀 **Deploy** full experiment suite to GPU via `/run-experiment`
-5. 📊 **Collect** initial results and update the experiment tracker
+3. 🔍 **GPT-5.4 code review** — cross-model review catches logic bugs before wasting GPU hours (`code review: true` by default)
+4. ✅ **Sanity check** — run the smallest experiment first to catch runtime bugs
+5. 🚀 **Deploy** full experiment suite to GPU via `/run-experiment`
+6. 📊 **Collect** initial results and update the experiment tracker
 
 **Skills involved:** `experiment-bridge` + `run-experiment` + `monitor-experiment`
 
@@ -959,6 +961,7 @@ Skills are plain Markdown files. Fork and customize:
 | `ARXIV_DOWNLOAD` | false | Download top arXiv PDFs after literature search | → `idea-discovery` → `research-lit` |
 | `HUMAN_CHECKPOINT` | false | When `true`, pause after each review round for approval | → `auto-review-loop` |
 | `WANDB` | false | Auto-add W&B logging to experiments | → `experiment-bridge` → `run-experiment` |
+| `CODE_REVIEW` | true | GPT-5.4 reviews experiment code before deployment | → `experiment-bridge` |
 | `ILLUSTRATION` | false | Auto-generate method diagrams via Gemini. Requires `GEMINI_API_KEY` | → `paper-writing` → `paper-illustration` |
 
 Override inline: `/research-pipeline "topic" — auto proceed: false, wandb: true, illustration: true`
@@ -988,12 +991,13 @@ Override inline: `/idea-discovery "topic" — pilot budget: 4h per idea, sources
 
 | Constant | Default | Description |
 |----------|---------|-------------|
-| `AUTO_DEPLOY` | true | Automatically deploy experiments after implementation. Set `false` to review code first |
+| `CODE_REVIEW` | true | GPT-5.4 xhigh reviews code before deployment. Catches logic bugs before wasting GPU hours |
+| `AUTO_DEPLOY` | true | Automatically deploy experiments after implementation + review. Set `false` to manually inspect |
 | `SANITY_FIRST` | true | Run smallest experiment first to catch setup bugs before full deployment |
 | `MAX_PARALLEL_RUNS` | 4 | Maximum experiments to deploy in parallel (limited by available GPUs) |
 | `WANDB` | false | Auto-add W&B logging. Requires `wandb_project` in CLAUDE.md |
 
-Override inline: `/experiment-bridge — auto deploy: false, wandb: true`
+Override inline: `/experiment-bridge — code review: false, wandb: true`
 
 ### Literature Search (`research-lit`)
 
